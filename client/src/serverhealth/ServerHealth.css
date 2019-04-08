@@ -1,0 +1,12 @@
+.serverHealth {
+  color: white;
+  text-align: left;
+}
+
+.UP {
+  color: lightgreen;
+}
+
+.DOWN {
+  color: red;
+}

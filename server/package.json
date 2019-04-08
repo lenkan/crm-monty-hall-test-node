@@ -1,0 +1,13 @@
+{
+  "name": "server",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./server",
+    "test": "jest"
+  },
+  "dependencies": {
+    "express": "~4.16.0",
+    "jest": "^24.7.1"
+  }
+}
