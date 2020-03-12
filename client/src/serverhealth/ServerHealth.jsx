@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from 'axios';
 import './ServerHealth.css';
 
-class ServerHealth extends Component {
+export class ServerHealth extends Component {
 
   constructor(props) {
     super(props);
@@ -27,8 +27,8 @@ class ServerHealth extends Component {
           this.setState({ serverHealth: 'DOWN' });
         }
       })
-      .catch(res => {
-        console.log(res);
+      .catch(error => {
+        console.log(error);
         this.setState({ serverHealth: 'DOWN' });
       });
   };
@@ -36,11 +36,9 @@ class ServerHealth extends Component {
   render() {
     return (
       <div className="serverHealth">
-        <p>Backend is: <a className={this.state.serverHealth}>{this.state.serverHealth}</a></p>
+        <p>Backend is: <span className={this.state.serverHealth}>{this.state.serverHealth}</span></p>
       </div>
     );
   }
 
 }
-
-export default ServerHealth;
