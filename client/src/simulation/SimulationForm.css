@@ -1,0 +1,17 @@
+.form {
+  margin: auto;
+}
+
+.form-input {
+  display: block;
+  width: 100%;
+}
+
+.form-group {
+  display: block;
+}
+
+.form-button {
+  display: block;
+  width: 100%;
+}

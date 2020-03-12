@@ -10,8 +10,16 @@
 }
 
 .App-main {
-  max-width: 800px;
+  max-width: 300px;
   margin: auto;
+  text-align: center;
+}
+
+.App-container {
+  margin: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px;
 }
 
 .App-link {

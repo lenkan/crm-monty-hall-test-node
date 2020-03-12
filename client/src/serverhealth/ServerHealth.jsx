@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import axios from 'axios';
+import { healthy } from "../api"
 import './ServerHealth.css';
 
 export class ServerHealth extends Component {
-
   constructor(props) {
     super(props);
     this.state = { serverHealth: 'UNKNOWN' };
@@ -19,9 +18,8 @@ export class ServerHealth extends Component {
   }
 
   getHealth = () => {
-    axios.get('/health')
-      .then(res => {
-        if (res.status === 200) {
+    healthy().then(res => {
+        if (res) {
           this.setState({ serverHealth: 'UP' });
         } else {
           this.setState({ serverHealth: 'DOWN' });
