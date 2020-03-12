@@ -12,18 +12,25 @@ function createSet() {
   );
 }
 
-function runSimulation(n, changeDoor) {
+function assertPositiveNumber(n) {
   if (typeof n !== 'number' || isNaN(n) || n < 0) {
     throw new Error(
       'Invalid input: number of runs (n) has to be a positive number'
     );
   }
+}
 
+function assertBooleanValue(changeDoor) {
   if (typeof changeDoor !== 'boolean') {
     throw new Error('Invalid input: changeDoor has to be a boolean');
   }
+}
 
-  const runs = Array.from({ length: n }).reduce(result => {
+function runSimulation(n, changeDoor) {
+  assertPositiveNumber(n);
+  assertBooleanValue(changeDoor);
+
+  return Array.from({ length: n }).reduce(wins => {
     const set = createSet();
 
     const selectionIndex = randomSelectionIndex();
@@ -32,17 +39,15 @@ function runSimulation(n, changeDoor) {
     );
 
     if (changeDoor) {
-      result += set.find(
+      wins += set.find(
         (_, index) => index !== selectionIndex && index !== revealIndex
       );
     } else {
-      result += set[selectionIndex];
+      wins += set[selectionIndex];
     }
 
-    return result;
+    return wins;
   }, 0);
-
-  return runs;
 }
 
 module.exports = runSimulation;
