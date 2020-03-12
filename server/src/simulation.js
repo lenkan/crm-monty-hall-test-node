@@ -5,7 +5,7 @@ function randomSelectionIndex() {
   return Math.floor(Math.random() * 3);
 }
 
-function createSet() {
+function createDoors() {
   const carIndex = randomSelectionIndex();
   return Array.from({ length: 3 }).map((_, index) =>
     index === carIndex ? CAR : GOAT
@@ -31,19 +31,20 @@ function runSimulation(n, changeDoor) {
   assertBooleanValue(changeDoor);
 
   return Array.from({ length: n }).reduce(wins => {
-    const set = createSet();
+    const doors = createDoors();
 
-    const selectionIndex = randomSelectionIndex();
-    const revealIndex = set.findIndex(
-      (value, index) => index !== selectionIndex && value !== CAR
+    const selectedDoorIndex = randomSelectionIndex();
+    const reaveledDoorIndex = doors.findIndex(
+      (value, index) => index !== selectedDoorIndex && value !== CAR
+    );
+    const otherDoorIndex = doors.findIndex(
+      (_, index) => index !== selectedDoorIndex && index !== reaveledDoorIndex
     );
 
     if (changeDoor) {
-      wins += set.find(
-        (_, index) => index !== selectionIndex && index !== revealIndex
-      );
+      wins += doors[otherDoorIndex];
     } else {
-      wins += set[selectionIndex];
+      wins += doors[selectedDoorIndex];
     }
 
     return wins;
